@@ -1,0 +1,31 @@
+<html>
+<h1>Hey</h1>
+<body>
+<div id="textResponse">
+awaiting response
+</div>
+</body>
+<script>
+
+function HandleLoginResponse()
+{
+	document.getElementById("textResponse").innerHTML = response +"<p>";
+}
+function SendLoginReqest(username,password)
+{
+	var request = XMLHttpRequest();
+request.setRequestHeader("Content-Type","application/json");
+	request.open("POST","rpc.sameple.com/login.php?type=login&uname="+username+"&pword="+password,true);
+	
+	request.onreadystatechange= function ()
+	{	
+		if ((this.readyState == 4)&&(this.status == 200))
+		{	
+			HandleLoginResponse(this.responseText);
+		}
+	}
+	request.send();
+}
+</script>
+
+</html>
